@@ -1,6 +1,6 @@
 Name:		texlive-simplenodes
 Version:	62888
-Release:	1
+Release:	2
 Summary:	Simple nodes in four colors written in TikZ for LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/simplenodes
