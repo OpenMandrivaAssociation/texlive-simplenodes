@@ -1,42 +1,25 @@
-Name:		texlive-simplenodes
-Version:	62888
-Release:	2
+%global tl_name simplenodes
+%global tl_revision 62888
+
+Name:		texlive-%{tl_name}
+Version:	%{tl_revision}
+Release:	1
 Summary:	Simple nodes in four colors written in TikZ for LaTeX
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/simplenodes
+URL:		https://www.ctan.org/tex-archive/graphics/pgf/contrib/simplenodes
 License:	mit
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/simplenodes.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/simplenodes.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/simplenodes.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/simplenodes.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This is a LaTeX macro package for generating simple node-based
-flow graphs or diagrams built upon the TikZ package. The
-package provides two basic commands, one to generate a node and
-one to create links between nodes. The positioning of the nodes
-is not handled by the package itself but is preferably done in
-a tabular environment. In total, four simple node types are
-defined, loosely based on the nomenclature and color patterns
-of the popular Java script Bootstrap.
+This is a LaTeX macro package for generating simple node-based flow
+graphs or diagrams built upon the TikZ package. The package provides two
+basic commands, one to generate a node and one to create links between
+nodes. The positioning of the nodes is not handled by the package itself
+but is preferably done in a tabular environment. In total, four simple
+node types are defined, loosely based on the nomenclature and color
+patterns of the popular Java script Bootstrap.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/simplenodes
-%doc %{_texmfdistdir}/doc/latex/simplenodes
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
